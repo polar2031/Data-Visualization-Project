@@ -27,7 +27,8 @@
 
   states.attr("class", "state-boundary")
     .style("fill", function(d, i) {
-      return "rgb(174, 199, 232)";
+      return "none"
+      //"rgb(174, 199, 232)";
     });
 }
 
@@ -37,6 +38,5 @@ function processData(errors, map){
 
 // Use the queue library to load multiple files and then process them
 queue()
-  // .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/%E9%84%B0%E7%95%8C%E5%9C%96.geojson")
-  .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/taipei_district.geojson")
+  .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/routes.geojson")
   .await(processData);
