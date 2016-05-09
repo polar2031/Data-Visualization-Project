@@ -162,7 +162,7 @@ function stationsWithUsage(divId, enter, leave){
 }
 
 function processData(errors, mapData, routesData, stationsData, enter, enterH, leave, leaveH, rainfallData, incomeData){
-    console.log(enter);
+    console.log(enterH);
     initialMap("#canvas");
     drawMap("#canvas", mapData);
     drawRoutes("#canvas", routesData);
@@ -178,9 +178,9 @@ queue()
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/routes.geojson")
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/stations.geojson")
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/in_11_2015.json")
-    .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/in_hourly_11_2015")
+    .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/in_hourly_11_2015.json")
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/out_11_2015.json")
-    .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/out_hourly_11_2015")
+    .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/out_hourly_11_2015.json")
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/rainfall2015.json")
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/income.json")
     .await(processData);
