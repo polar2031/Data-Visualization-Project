@@ -105,20 +105,31 @@ function stationsWithUsage(divId, enter, leave){
         })
     })
     console.log(totalUsage);
+    var usageExtent = [];
+    allStations.forEach(function(d){
+        usageExtent = usageExtent.concat(totalUsage.get(d + "站"));
+    })
+    usageExtent = d3.extent(usageExtent);
+    var color = d3.scale.linear()
+        .domain(usageExtent)
+        .range(["rgb(254,224,210)", "rgb(222,0,0)"])
+        //.range(["rgb(255,255,255)", "rgb(0,0,0)"])
+        .interpolate(d3.interpolateHcl);
+
 
     var stations = d3.select(divId)
         .select("svg")
         .select(".stations")
         .selectAll("circle")
-        .attr("r", function(d){
-            if(totalUsage.has(d.properties.NAME)){
-                return totalUsage.get(d.properties.NAME)/100000;
-            }
-            else{
-                console.log(d.properties.NAME);
-                return 0;
-            }
-        });
+        .transition()
+        .duration(3000)
+        .attr("r",// 8)
+         function(d){
+            return Math.sqrt(totalUsage.get(d.properties.NAME)/10000);
+        })
+        .attr("fill", function(d){
+            return color(totalUsage.get(d.properties.NAME))
+        })
 }
 
 function processData(errors, mapData, routesData, stationsData, enter, leave, rainfall){
