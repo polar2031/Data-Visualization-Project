@@ -76,7 +76,7 @@
 { "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "公館站", "LOC": "羅斯福路與舟山路交叉口 (台灣大學旁" }, "geometry": { "type": "Point", "coordinates": [ 121.53434703188557, 25.014707482373044 ] } },
 { "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "復興崗站", "LOC": "中央北路三段５３巷和原台鐵淡水線交叉口" }, "geometry": { "type": "Point", "coordinates": [ 121.48520813535164, 25.137446811852712 ] } },
 { "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "七張站", "LOC": "北新路與寶橋路交叉口" }, "geometry": { "type": "Point", "coordinates": [ 121.54291090576599, 24.975082925897691 ] } },
-{ "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "新店市公所站", "LOC": "北新路與中華路交叉口 (新店市公所前)" }, "geometry": { "type": "Point", "coordinates": [ 121.54129865593426, 24.967394430808014 ] } },
+{ "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "新店區公所站", "LOC": "北新路與中華路交叉口 (新店市公所前)" }, "geometry": { "type": "Point", "coordinates": [ 121.54129865593426, 24.967394430808014 ] } },
 { "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "新店站", "LOC": "北新路台汽客運總站" }, "geometry": { "type": "Point", "coordinates": [ 121.53761004105192, 24.957871647770428 ] } },
 { "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "南勢角站", "LOC": "台鐵中和貨運站" }, "geometry": { "type": "Point", "coordinates": [ 121.50917264645945, 24.990408531519773 ] } },
 { "type": "Feature", "properties": { "AREA": 0.000000, "PERIMETER": 0.000000, "NAME": "永安市場站", "LOC": "永安市場附近" }, "geometry": { "type": "Point", "coordinates": [ 121.51112538697051, 25.002555879534732 ] } },
