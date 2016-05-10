@@ -1,0 +1,93 @@
+[
+ {
+   "district":"總計",
+   "village":456,
+   "neighborhood":" 9,555 ",
+   "household":" 1,044,441 ",
+   "population":" 2,703,829 "
+ },
+ {
+   "district":"松山",
+   "village":33,
+   "neighborhood":" 760 ",
+   "household":" 80,295 ",
+   "population":" 209,638 "
+ },
+ {
+   "district":"信義",
+   "village":41,
+   "neighborhood":" 905 ",
+   "household":" 89,460 ",
+   "population":" 228,608 "
+ },
+ {
+   "district":"大安",
+   "village":53,
+   "neighborhood":" 1,023 ",
+   "household":" 120,431 ",
+   "population":" 312,993 "
+ },
+ {
+   "district":"中山",
+   "village":42,
+   "neighborhood":" 867 ",
+   "household":" 99,134 ",
+   "population":" 231,116 "
+ },
+ {
+   "district":"中正",
+   "village":31,
+   "neighborhood":" 580 ",
+   "household":" 65,178 ",
+   "population":" 162,334 "
+ },
+ {
+   "district":"大同",
+   "village":25,
+   "neighborhood":" 522 ",
+   "household":" 51,523 ",
+   "population":" 130,833 "
+ },
+ {
+   "district":"萬華",
+   "village":36,
+   "neighborhood":" 723 ",
+   "household":" 78,338 ",
+   "population":" 194,100 "
+ },
+ {
+   "district":"文山",
+   "village":43,
+   "neighborhood":" 998 ",
+   "household":" 104,617 ",
+   "population":" 275,631 "
+ },
+ {
+   "district":"南港",
+   "village":20,
+   "neighborhood":" 451 ",
+   "household":" 46,495 ",
+   "population":" 122,223 "
+ },
+ {
+   "district":"內湖",
+   "village":39,
+   "neighborhood":" 906 ",
+   "household":" 106,718 ",
+   "population":" 287,753 "
+ },
+ {
+   "district":"士林",
+   "village":51,
+   "neighborhood":" 994 ",
+   "household":" 106,443 ",
+   "population":" 290,757 "
+ },
+ {
+   "district":"北投",
+   "village":42,
+   "neighborhood":" 826 ",
+   "household":" 95,809 ",
+   "population":" 257,843 "
+ }
+]
