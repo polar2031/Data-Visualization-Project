@@ -398,7 +398,7 @@ function addCheckBox(divId, enter, enterH, leave, leaveH){
 function drawLBChart(divId, enter, leave, rainfallData) {
     var year = 2015;
     var month = 11;
-
+    var weekDay = 0;
     var dailyUsage = [];
     Object.keys(enter[0]).slice(1)
     enter.forEach(function(d, i){
@@ -416,8 +416,8 @@ function drawLBChart(divId, enter, leave, rainfallData) {
     var dt1 = new Date(year + "-1-1");
     var dt2 = new Date(year + "-" + month + "-1");
     var days = new Date(year,month,0).getDate();
-    //year + "-" + month
-    console.log(days);
+
+    // console.log(days);
     var firstDay = Math.round((dt2 - dt1) / (1000 * 60 * 60 * 24));
     // console.log(firstDay);
     // console.log(rainfallData.dataset.location[3].weatherElement.time[firstDay]);
@@ -425,7 +425,7 @@ function drawLBChart(divId, enter, leave, rainfallData) {
     for(var i = 0; i < days; i++){
         dailyRainfall = dailyRainfall.concat(isNaN(parseFloat(rainfallData.dataset.location[3].weatherElement.time[firstDay + i].elementValue.value))?0.0:parseFloat(rainfallData.dataset.location[3].weatherElement.time[firstDay + i].elementValue.value))
     }
-    console.log(dailyRainfall);
+    // console.log(dailyRainfall);
 
     var chartWidth = width - margin.left - margin.right;
     var chartHeight = height/2 - margin.top - margin.bottom;
@@ -453,7 +453,7 @@ function drawLBChart(divId, enter, leave, rainfallData) {
     var usageExtent = d3.extent(dailyUsage);
     var rainfallExtent =d3.extent(dailyRainfall);
     var y1 = d3.scale.linear()
-        .domain(usageExtent)
+        .domain([usageExtent[0] - 100000, usageExtent[1]])
         .range([chartHeight, 0]);
     var y2 = d3.scale.linear()
         .domain(rainfallExtent)
@@ -468,11 +468,16 @@ function drawLBChart(divId, enter, leave, rainfallData) {
         .range(["rgb(158,202,225)", "rgb(8,64,129)"])
         .interpolate(d3.interpolateHcl);
 
+
+
     var bar = svg.selectAll("rect")
         .data(dailyUsage)
-        .enter().append("rect");
+        .enter()
+        .append("rect")
+    svg.append("line")
+
     bar.attr("x", function(d,i) { return i * barWidth; })
-        .attr("y", function(d,i) { return y1(usageExtent[0]); })
+        .attr("y", function(d,i) { return y1(usageExtent[0] - 100000); })
         .attr("width", barWidth - 1)
         .attr("height", function(d,i) { return 0; })
         .attr("class", "bar")
@@ -487,7 +492,8 @@ function drawLBChart(divId, enter, leave, rainfallData) {
         .transition()
         .duration(2000)
         .attr("y", function(d,i) { return y1(d/yUnit); })
-        .attr("height", function(d,i) { return y1(usageExtent[0]) - y1(d/yUnit); })
+        .attr("height", function(d,i) { return y1(usageExtent[0] - 100000) - y1(d/yUnit); })
+
 
     var yName = svg.append("text")
     yName.attr("text-anchor", "middle")
@@ -508,6 +514,29 @@ function drawLBChart(divId, enter, leave, rainfallData) {
         .selectAll(".tick")
         .attr("transform", function(d, i){
             return "translate(" + (i * barWidth + barWidth/2) + ", 0)";
+        })
+
+    bar.on("mouseover", function(d){
+            d3.select(divId)
+                .select("svg")
+                .select("g")
+                .select("line")
+                .attr("x1", 0)
+                .attr("y1", function() { return y1(d/yUnit); })
+                .attr("x2", chartWidth)
+                .attr("y2", function() { return y1(d/yUnit); })
+                .attr("stroke", "red")
+        })
+        .on("mouseout", function(){
+            d3.select(divId)
+                .select("svg")
+                .select("g")
+                .select("line")
+                .attr("x1", 0)
+                .attr("y1", 0)
+                .attr("x2", 0)
+                .attr("y2", 0)
+                .attr("stroke", "gray")
         })
  }
 

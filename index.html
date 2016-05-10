@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CIS-602 Project 01605369 Kuan-Lun Chen</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.15/d3.min.js" charset="utf-8" type="text/javascript"></script>
+  <!-- <script src="d3.min.js" charset="utf-8"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+  <!-- <script src="queue.min.js" charset="utf-8"></script> -->
+
+  <script async src="design.js"></script>
+
+  <script type='text/javascript'>
+      function show(obj, id)
+      {
+          var o=document.getElementById(id);
+          if( o.style.display == 'none' )
+          {
+              o.style.display='';
+          }
+          else
+          {
+              o.style.display='none';
+          }
+      }
+  </script>
+
+  <style type="text/css">
+
+  .axis path, .axis line {
+  fill: none;
+  stroke: black;
+  stroke-width: 2;
+  shape-rendering: crispEdges;
+  }
+
+  text {
+      font-family: sans-serif;
+      font-size: 11pt;
+      fill: black;
+  }
+
+  .district {
+      stroke: rgb(50,50,50);
+      stroke-width: 2px;
+  }
+  .routes {
+    stroke: black;
+    stroke-width: 6px;
+    fill: none;
+}
+
+.station {
+    opacity:0.8
+}
+
+.button {
+    display: inline-block;
+    background:gray;
+}
+
+.button.highlight {
+    background:orange;
+}
+
+#canvas1 {
+    display: inline-block;
+}
+
+#canvas2 {
+    display: inline-block;
+}
+
+  </style>
+</head>
+
+<body>
+    <div id="buttonsBar1" style="buttonsBar">
+        <div id="DEFAULT" class="button highlight">
+            <p>
+                &nbsp;DEFAULT&nbsp;
+            </p>
+        </div>
+        <div id="INCOME" class="button">
+            <p>
+                &nbsp;INCOME&nbsp;
+            </p>
+        </div>
+        <div id="POPULATION" class="button">
+            <p>
+                &nbsp;POPULATION&nbsp;
+            </p>
+        </div>
+        <div id="DENSITY" class="button">
+            <p>
+                &nbsp;DENSITY&nbsp;
+            </p>
+        </div>
+    </div>
+    <div id="canvas1"></div>
+    <div id="canvas2"></div>
+
+    <br><br><br>
+    <div style="buttonsBar2">
+        <div id="RAIN" class="button highlight">
+            <p>
+                &nbsp;RAIN AND USAGE&nbsp;
+            </p>
+        </div>
+    </div>
+    <div id="canvas3"></div>
+
+    <h2><span onclick='show(this, "box")' style='background:gray'>
+        Info
+    </span></h2>
+    <div id='box' style='display:none'>
+        <h4>Kuan-Lun Chen</h4>
+        <h4>01605369</h4>
+        <h4>Data Visualization (DSC 530/CIS 602-01)</h4>
+        <h4>Project Designs</h4>
+        <p>This assignment is all my own work. I did not copy or rewrite the code from any other source.</p>
+        <br>
+    </div>
+
+
+
+</body>
+</html>
