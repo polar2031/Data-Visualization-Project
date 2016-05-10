@@ -91,8 +91,70 @@ function mapWithIncome(divId, incomeData){
             return color(allIncomes.get(d.properties.TNAME));
         })
 }
+function mapWithPopulation(divId, populationData){
+    var incomeData = [];
+    var allPopulations = d3.map();
+    populationData.forEach(function(d){
+        if(d.district != "總計"){
+            allPopulations.set(d.district + "區", parseInt(d.population.replace(/\,/g,"")));
+        }
+    })
+    // console.log(allPopulations);
+    var populationExtent = [];
+    allPopulations.entries().forEach(function(d){
+        populationExtent = populationExtent.concat(d.value);
+    })
+    populationExtent = d3.extent(populationExtent);
+    var color = d3.scale.linear()
+        .domain(populationExtent)
+        .range(["rgb(224,243,219)", "rgb(8,64,129)"])
+        .interpolate(d3.interpolateHcl);
 
+    var stations = d3.select(divId)
+        .select("svg")
+        .select(".map")
+        .selectAll("path")
+        .transition()
+        .duration(1000)
+        .attr("fill", function(d){
+            // console.log(allPopulations.get(d.properties.TNAME));
+            return color(allPopulations.get(d.properties.TNAME));
+        });
+}
+function mapWithDensity(divId, populationData, areaData){
+    console.log(areaData[0]);
+    var incomeData = [];
+    var allDensitys = d3.map();
+    populationData.forEach(function(d){
+        if(d.district != "總計"){
+            n = d.district + "區";
+            // console.log(n);
+            // console.log(areaData[0][n]);
+            allDensitys.set(d.district + "區", parseInt(d.population.replace(/\,/g,"") / parseFloat(areaData[0][n])));
+        }
+    })
+    console.log(allDensitys);
+    var densityExtent = [];
+    allDensitys.entries().forEach(function(d){
+        densityExtent = densityExtent.concat(d.value);
+    })
+    densityExtent = d3.extent(densityExtent);
+    var color = d3.scale.linear()
+        .domain(densityExtent)
+        .range(["rgb(224,243,219)", "rgb(8,64,129)"])
+        .interpolate(d3.interpolateHcl);
 
+    var stations = d3.select(divId)
+        .select("svg")
+        .select(".map")
+        .selectAll("path")
+        .transition()
+        .duration(1000)
+        .attr("fill", function(d){
+            //console.log(allDensitys.get(d.properties.TNAME));
+            return color(allDensitys.get(d.properties.TNAME));
+        });
+}
 
  // ######  ####### #     # ####### #######  #####
  // #     # #     # #     #    #    #       #     #
@@ -459,9 +521,7 @@ function drawLBChart(divId, enter, leave, rainfallData) {
  // #       #    #  #     # #     # #       #     # #     # #     # #     #    #    #     #
  // #       #     # #######  #####  #######  #####   #####  ######  #     #    #    #     #
 
-function processData(errors, mapData, outMapData, routesData, stationsData, enter, enterH, leave, leaveH, rainfallData, incomeData){
-
-    console.log(enterH);
+function processData(errors, mapData, outMapData, routesData, stationsData, enter, enterH, leave, leaveH, rainfallData, incomeData, populationData, areaData){
     initialMap("#canvas1");
     drawMap("#canvas1", mapData, outMapData);
     drawRoutes("#canvas1", routesData);
@@ -477,7 +537,6 @@ function processData(errors, mapData, outMapData, routesData, stationsData, ente
             d3.select(this)
                 .classed("highlight", true);
             mapDefault("#canvas1");
-            stationDefault("#canvas1");
         }
         )
     d3.select("#INCOME")
@@ -489,7 +548,24 @@ function processData(errors, mapData, outMapData, routesData, stationsData, ente
                 .classed("highlight", true);
             mapWithIncome("#canvas1", incomeData);
         })
-
+    d3.select("#POPULATION")
+        .on("click", function(){
+            d3.select("#buttonsBar1")
+            .selectAll(".button.highlight")
+                .classed("highlight", false);
+            d3.select(this)
+                .classed("highlight", true);
+            mapWithPopulation("#canvas1", populationData);
+        })
+    d3.select("#DENSITY")
+        .on("click", function(){
+            d3.select("#buttonsBar1")
+            .selectAll(".button.highlight")
+                .classed("highlight", false);
+            d3.select(this)
+                .classed("highlight", true);
+            mapWithDensity("#canvas1", populationData, areaData);
+        })
 
     d3.select("#RAIN")
         .select("#button2")
@@ -512,4 +588,6 @@ queue()
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/out_hourly_11_2015.json")
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/rainfall2015.json")
     .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/income.json")
+    .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/population.json")
+    .defer(d3.json, "https://raw.githubusercontent.com/polar2031/Data-Visualization-Project/master/taipei_district_area.json")
     .await(processData);
